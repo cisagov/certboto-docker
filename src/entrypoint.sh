@@ -1,8 +1,13 @@
 #!/bin/sh
 
+set -o nounset
 set -o errexit
 set -o pipefail
 
+if [ $1 = "--version" ]; then
+  echo 0.0.1
+  exit 0
+fi
 
 ACME_CONFIG_ROOT=/etc/letsencrypt
 

@@ -9,9 +9,7 @@ import pytest
 ENV_VAR = "ECHO_MESSAGE"
 ENV_VAR_VAL = "Hello World from docker-compose!"
 READY_MESSAGE = "Syncing certbot configs"
-SECRET_QUOTE = (
-    "There are no secrets better kept than the secrets everybody guesses."  # nosec
-)
+TOKEN_ERROR_MESSAGE = "The security token included in the request is invalid"
 TRAVIS_TAG = os.getenv("TRAVIS_TAG")
 VERSION_FILE = "src/version.txt"
 
@@ -40,7 +38,9 @@ def test_wait_for_ready(main_container):
 
 def test_wait_for_exits(main_container, version_container):
     """Wait for containers to exit."""
-    assert main_container.wait() == 0, "Container service (main) did not exit cleanly"
+    assert (
+        main_container.wait() == 1
+    ), "Container service (main) did not exit with expected error"
     assert (
         version_container.wait() == 0
     ), "Container service (version) did not exit cleanly"
@@ -50,7 +50,7 @@ def test_output(main_container):
     """Verify the container had the correct output."""
     main_container.wait()  # make sure container exited if running test isolated
     log_output = main_container.logs().decode("utf-8")
-    assert SECRET_QUOTE in log_output, "Secret not found in log output."
+    assert TOKEN_ERROR_MESSAGE in log_output, "Message not found in log output."
 
 
 @pytest.mark.skipif(
