@@ -5,7 +5,7 @@ https://docs.pytest.org/en/latest/writing_plugins.html#conftest-py-plugins
 import pytest
 
 
-MAIN_SERVICE_NAME = "example"
+MAIN_SERVICE_NAME = "certbot-s3"
 VERSION_SERVICE_NAME = f"{MAIN_SERVICE_NAME}-version"
 
 

@@ -8,7 +8,7 @@ import pytest
 
 ENV_VAR = "ECHO_MESSAGE"
 ENV_VAR_VAL = "Hello World from docker-compose!"
-READY_MESSAGE = "This is a debug message"
+READY_MESSAGE = "Syncing certbot configs"
 SECRET_QUOTE = (
     "There are no secrets better kept than the secrets everybody guesses."  # nosec
 )
