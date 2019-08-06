@@ -1,4 +1,4 @@
-# certbot-s3-docker 💀🐳 #
+# certbot-s3-docker 📜🤖☁️🐳 #
 
 [![Build Status](https://travis-ci.com/cisagov/certbot-s3-docker.svg?branch=develop)](https://travis-ci.com/cisagov/certbot-s3-docker)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/certbot-s3-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certbot-s3-docker/alerts/)
