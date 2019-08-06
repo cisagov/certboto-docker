@@ -5,7 +5,7 @@ python: 3.7
 services: docker
 env:
   global:
-    - IMAGE_NAME=dhsncats/example
+    - IMAGE_NAME=dhsncats/certbot-s3
     - DOCKER_USER=felddy
     # DOCKER_PW
     - secure: "ENoShlh71u2RhvoBgT5tx/d7TowkoCvCrlaQ5lL7vRelcb4+p8m7UPvKhu1t\
