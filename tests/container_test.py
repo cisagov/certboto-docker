@@ -9,7 +9,7 @@ import pytest
 ENV_VAR = "ECHO_MESSAGE"
 ENV_VAR_VAL = "Hello World from docker-compose!"
 READY_MESSAGE = "Syncing certbot configs"
-TOKEN_ERROR_MESSAGE = "The security token included in the request is invalid"
+TOKEN_ERROR_MESSAGE = "The security token included in the request is invalid"  # nosec
 TRAVIS_TAG = os.getenv("TRAVIS_TAG")
 VERSION_FILE = "src/version.txt"
 
