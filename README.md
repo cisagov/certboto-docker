@@ -6,8 +6,8 @@
 
 ## Docker Image ##
 
-![MicroBadger Layers](https://img.shields.io/microbadger/layers/dhsncats/example.svg)
-![MicroBadger Size](https://img.shields.io/microbadger/image-size/dhsncats/example.svg)
+![MicroBadger Layers](https://img.shields.io/microbadger/layers/dhsncats/certbot-s3.svg)
+![MicroBadger Size](https://img.shields.io/microbadger/image-size/dhsncats/certbot-s3.svg)
 
 This is a docker skeleton project that can be used to quickly get a
 new [cisagov](https://github.com/cisagov) GitHub docker project
@@ -21,11 +21,11 @@ containers and the major languages that we use.
 
 ### Install ###
 
-Pull `dhsncats/example` from the Docker repository:
+Pull `dhsncats/certbot-s3` from the Docker repository:
 
-    docker pull dhsncats/example
+    docker pull dhsncats/certbot-s3
 
-Or build `dhsncats/example` from source:
+Or build `dhsncats/certbot-s3` from source:
 
     git clone https://github.com/cisagov/certbot-s3-docker.git
     cd certbot-s3-docker
