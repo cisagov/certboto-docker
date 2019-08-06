@@ -41,7 +41,7 @@ def hash_archive(archive_domain_dir):
     with os.scandir(archive_domain_dir) as it:
         for entry in it:
             with open(entry.path, "rb") as f:
-                hash = hashlib.md5(f.read()).hexdigest()
+                hash = hashlib.sha256(f.read()).hexdigest()
             if hash not in hash_map or hash_map[hash].name < entry.name:
                 # Expect chain.pem files to collide.
                 # Save the highest numbered one.
@@ -70,7 +70,7 @@ def relink(config_root, live_domain_entry):
             logging.info(f"Re-linking {live_entry.name}")
             # Calculate the hash of the live file
             with open(live_entry.path, "rb") as f:
-                live_hash = hashlib.md5(f.read()).hexdigest()
+                live_hash = hashlib.sha256(f.read()).hexdigest()
             logging.debug(f"{live_entry.name} hash {live_hash}")
             # Try to find a matching hash in the archive map
             archive_entry = hash_map.get(live_hash)
