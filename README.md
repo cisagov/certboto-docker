@@ -1,8 +1,8 @@
-# skeleton-docker 💀🐳 #
+# certbot-s3-docker 💀🐳 #
 
-[![Build Status](https://travis-ci.com/cisagov/skeleton-docker.svg?branch=develop)](https://travis-ci.com/cisagov/skeleton-docker)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/skeleton-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/skeleton-docker/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/skeleton-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/skeleton-docker/context:python)
+[![Build Status](https://travis-ci.com/cisagov/certbot-s3-docker.svg?branch=develop)](https://travis-ci.com/cisagov/certbot-s3-docker)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/certbot-s3-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certbot-s3-docker/alerts/)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/certbot-s3-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certbot-s3-docker/context:python)
 
 ## Docker Image ##
 
@@ -27,8 +27,8 @@ Pull `dhsncats/example` from the Docker repository:
 
 Or build `dhsncats/example` from source:
 
-    git clone https://github.com/cisagov/skeleton-docker.git
-    cd skeleton-docker
+    git clone https://github.com/cisagov/certbot-s3-docker.git
+    cd certbot-s3-docker
     docker-compose build --build-arg VERSION=0.0.1
 
 ### Run ###
