@@ -5,7 +5,7 @@ set -o errexit
 set -o pipefail
 
 if [ "$1" = "--version" ]; then
-  echo 0.0.1
+  awk '{print $3}' < version.txt | tr -d \"
   exit 0
 fi
 
