@@ -1,13 +1,13 @@
-# certbot-s3-docker 📜🤖☁️🐳 #
+# certboto-docker 📜🤖☁️🐳 #
 
-[![Build Status](https://travis-ci.com/cisagov/certbot-s3-docker.svg?branch=develop)](https://travis-ci.com/cisagov/certbot-s3-docker)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/certbot-s3-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certbot-s3-docker/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/certbot-s3-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certbot-s3-docker/context:python)
+[![Build Status](https://travis-ci.com/cisagov/certboto-docker.svg?branch=develop)](https://travis-ci.com/cisagov/certboto-docker)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/certboto-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certboto-docker/alerts/)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/certboto-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certboto-docker/context:python)
 
 ## Docker Image ##
 
-![MicroBadger Layers](https://img.shields.io/microbadger/layers/dhsncats/certbot-s3.svg)
-![MicroBadger Size](https://img.shields.io/microbadger/image-size/dhsncats/certbot-s3.svg)
+![MicroBadger Layers](https://img.shields.io/microbadger/layers/dhsncats/certboto.svg)
+![MicroBadger Size](https://img.shields.io/microbadger/image-size/dhsncats/certboto.svg)
 
 This is a docker skeleton project that can be used to quickly get a
 new [cisagov](https://github.com/cisagov) GitHub docker project
@@ -21,14 +21,14 @@ containers and the major languages that we use.
 
 ### Install ###
 
-Pull `dhsncats/certbot-s3` from the Docker repository:
+Pull `dhsncats/certboto` from the Docker repository:
 
-    docker pull dhsncats/certbot-s3
+    docker pull dhsncats/certboto
 
-Or build `dhsncats/certbot-s3` from source:
+Or build `dhsncats/certboto` from source:
 
-    git clone https://github.com/cisagov/certbot-s3-docker.git
-    cd certbot-s3-docker
+    git clone https://github.com/cisagov/certboto-docker.git
+    cd certboto-docker
     docker-compose build --build-arg VERSION=0.0.1
 
 ### Run ###
