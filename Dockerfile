@@ -21,4 +21,4 @@ COPY src/config /root/.aws/config
 RUN ln -snf /run/secrets/credentials /root/.aws/credentials
 
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["renew","--dns-route53"]
+CMD ["renew"]

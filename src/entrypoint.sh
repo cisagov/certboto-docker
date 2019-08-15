@@ -17,9 +17,9 @@ AWS_PROFILE=${BUCKET_PROFILE} aws s3 sync "s3://${BUCKET_NAME}" ${ACME_CONFIG_RO
 echo "Rebuilding symlinks in ${ACME_CONFIG_ROOT}"
 ./rebuild-symlinks.py --log-level warning ${ACME_CONFIG_ROOT}
 
-echo "Running certbot with arguments $*"
+echo "Running certbot with arguments --dns-route53 $*"
 # shellcheck disable=SC2048,SC2086
-AWS_PROFILE=${DNS_PROFILE} certbot $*
+AWS_PROFILE=${DNS_PROFILE} certbot --dns-route53 $*
 
 echo "Syncing certbot configs to ${BUCKET_NAME}"
 AWS_PROFILE=${BUCKET_PROFILE} aws s3 sync --delete ${ACME_CONFIG_ROOT} "s3://${BUCKET_NAME}"
