@@ -12,7 +12,7 @@ fi
 ACME_CONFIG_ROOT=/etc/letsencrypt
 
 echo "Syncing certbot configs from ${BUCKET_NAME}"
-AWS_PROFILE=${BUCKET_PROFILE} aws s3 sync "s3://${BUCKET_NAME}" ${ACME_CONFIG_ROOT}
+AWS_PROFILE=${BUCKET_PROFILE} aws s3 sync --quiet "s3://${BUCKET_NAME}" ${ACME_CONFIG_ROOT}
 
 echo "Rebuilding symlinks in ${ACME_CONFIG_ROOT}"
 ./rebuild-symlinks.py --log-level warning ${ACME_CONFIG_ROOT}
