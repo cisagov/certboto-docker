@@ -14,8 +14,10 @@ ACME_CONFIG_ROOT=/etc/letsencrypt
 echo "Syncing certbot configs from ${BUCKET_NAME}"
 AWS_PROFILE=${BUCKET_PROFILE} aws s3 sync "s3://${BUCKET_NAME}" ${ACME_CONFIG_ROOT}
 
+echo "Rebuilding symlinks in ${ACME_CONFIG_ROOT}"
 ./rebuild-symlinks.py --log-level warning ${ACME_CONFIG_ROOT}
 
+echo "Running certbot with arguments $*"
 # shellcheck disable=SC2048,SC2086
 AWS_PROFILE=${DNS_PROFILE} certbot $*
 
