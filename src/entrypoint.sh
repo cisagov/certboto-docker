@@ -10,6 +10,12 @@ if [ "$1" = "--version" ]; then
   exit 0
 fi
 
+# Allow users to get help without bucket syncing
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+  certbot --help
+  exit $?
+fi
+
 ACME_CONFIG_ROOT=/etc/letsencrypt
 
 echo "Syncing certbot configs from ${BUCKET_NAME}"
