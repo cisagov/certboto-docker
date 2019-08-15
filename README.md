@@ -74,7 +74,7 @@ docker-compose build --build-arg VERSION=0.0.1
 
 The `BUCKET_PROFILE` should assume a role with the following policy:
 
-```json
+```javascript
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -98,7 +98,7 @@ The `BUCKET_PROFILE` should assume a role with the following policy:
 
 The `DNS_PROFILE` should assume a role with the following policy:
 
-```json
+```javascript
 {
     "Version": "2012-10-17",
     "Id": "certbot-dns-route53 sample policy",
@@ -131,7 +131,7 @@ The `DNS_PROFILE` should assume a role with the following policy:
 To access a specific certificate, a role with the following profile should be
 assumed:
 
-```json
+```javascript
 {
     "Version": "2012-10-17",
     "Statement": [
