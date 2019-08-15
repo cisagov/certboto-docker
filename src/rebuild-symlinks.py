@@ -110,6 +110,11 @@ def main():
 
     config_root = os.path.abspath(args["<cerbot-config-dir>"])
 
+    # Check to see if we have an empty certbot directory
+    if not os.path.exists(os.path.join(config_root, LIVE_DIR)):
+        logging.warning(f"No symlinks need to be rebuilt in: {config_root}")
+        sys.exit(0)
+
     everything_is_good = True
     for domain in live_domains(config_root):
         if not relink(config_root, domain):
