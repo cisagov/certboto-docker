@@ -9,57 +9,141 @@
 ![MicroBadger Layers](https://img.shields.io/microbadger/layers/dhsncats/certboto.svg)
 ![MicroBadger Size](https://img.shields.io/microbadger/image-size/dhsncats/certboto.svg)
 
-This is a docker skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) GitHub docker project
-started.  This skeleton project contains [licensing
-information](LICENSE), as well as [pre-commit
-hooks](https://pre-commit.com) and a [Travis
-CI](https://travis-ci.com) configuration appropriate for docker
-containers and the major languages that we use.
+Certboto combines all the convenience of [Certbot](https://certbot.eff.org)
+with the cloudiness of [AWS S3 buckets](https://aws.amazon.com/s3/)
+and [AWS Route53](https://aws.amazon.com/route53/)
+all wrapped up in a tasty [Docker](https://www.docker.com) container.
 
 ## Usage ##
+
+Consider using a `docker-compose.yml` file to run Certboto.
+You can find an example in this project's repository.
+
+To issue a new certificate:
+
+```console
+docker-compose run cerboto certonly -d lemmy.imotorhead.com
+```
+
+To renew existing certificates:
+
+```console
+docker-compose run cerboto
+```
+
+For additional `certbot` commands see the help:
+
+```console
+docker-compose run cerboto --help
+```
 
 ### Install ###
 
 Pull `dhsncats/certboto` from the Docker repository:
 
-    docker pull dhsncats/certboto
+```console
+docker pull dhsncats/certboto
+```
 
 Or build `dhsncats/certboto` from source:
 
-    git clone https://github.com/cisagov/certboto-docker.git
-    cd certboto-docker
-    docker-compose build --build-arg VERSION=0.0.1
-
-### Run ###
-
-    docker-compose run --rm example
-
-## Ports ##
-
-This container exposes the following ports:
-
-| Port  | Protocol | Service  |
-|-------|----------|----------|
-| 8080  | TCP      | http     |
+```console
+git clone https://github.com/cisagov/certboto-docker.git
+cd certboto-docker
+docker-compose build --build-arg VERSION=0.0.1
+```
 
 ## Environment Variables ##
 
-| Variable      | Default Value                 | Purpose      |
-|---------------|-------------------------------|--------------|
-| ECHO_MESSAGE  | `Hello World from Dockerfile` | Text to echo |
+| Variable      | Purpose      |
+|---------------|--------------|
+| AWS_DEFAULT_REGION | Default AWS region |
+| BUCKET_NAME | The bucket to store the Certbot configuration |
+| BUCKET_PROFILE | The profile of your `credentials` to use for bucket access.
+| DNS_PROFILE | The profile of your `credentials` to use for route53 access.
 
 ## Secrets ##
 
 | Filename      | Purpose              |
 |---------------|----------------------|
-| quote.txt     | Secret text to echo  |
+| credentials   | The [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) file. |
 
-## Volumes ##
+## AWS Policies ##
 
-| Mount point | Purpose        |
-|-------------|----------------|
-| /var/log    | logging output |
+### Certboto Roles ###
+
+The `BUCKET_PROFILE` should assume a role with the following policy:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::cert-bucket-name",
+                "arn:aws:s3:::cert-bucket-name/*"
+            ]
+        }
+    ]
+}
+```
+
+The `DNS_PROFILE` should assume a role with the following policy:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Id": "certbot-dns-route53 sample policy",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "route53:ListHostedZones",
+                "route53:GetChange"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect" : "Allow",
+            "Action" : [
+                "route53:ChangeResourceRecordSets"
+            ],
+            "Resource" : [
+                "arn:aws:route53:::hostedzone/YOURHOSTEDZONEID"
+            ]
+        }
+    ]
+}
+```
+
+### Certificate Access Role ###
+
+To access a specific certificate, a role with the following profile should be
+assumed:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "allow-cert-read",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::cert-bucket-name/live/lemmy.imotorhead.com/*"
+        }
+    ]
+}
+```
 
 ## Contributing ##
 
