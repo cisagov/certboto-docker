@@ -75,8 +75,8 @@ def test_log_version(version_container):
     with open(VERSION_FILE) as f:
         exec(f.read(), pkg_vars)  # nosec
     project_version = pkg_vars["__version__"]
-    assert (
-        log_output == project_version
+    assert log_output.startswith(
+        project_version
     ), f"Container version output to log does not match project version file {VERSION_FILE}"
 
 

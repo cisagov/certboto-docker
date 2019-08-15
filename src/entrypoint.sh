@@ -6,6 +6,7 @@ set -o pipefail
 
 if [ "$1" = "--version" ]; then
   awk '{print $3}' < version.txt | tr -d \"
+  certbot --version
   exit 0
 fi
 
