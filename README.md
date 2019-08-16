@@ -64,7 +64,7 @@ services:
         target: credentials
 ```
 
-Pull `dhsncats/certboto` from the Docker repository:
+Pull `dhsncats/certboto` from [Docker hub](https://hub.docker.com):
 
 ```console
 docker-compose pull
