@@ -17,7 +17,7 @@ all wrapped up in a tasty [Docker](https://www.docker.com) container.
 ## Usage ##
 
 Consider using a `docker-compose.yml` file to run Certboto.
-You can find an example in this project's repository.
+See the Install section below.
 
 To issue a new certificate:
 
@@ -39,10 +39,35 @@ docker-compose run certboto --help
 
 ### Install ###
 
+Create a `docker-compose.yml` file similar to this:
+
+```yml
+---
+version: "3.7"
+
+secrets:
+  credentials:
+    file: /home/username/.aws/credentials
+
+services:
+  certboto:
+    image: dhsncats/certboto
+    init: true
+    restart: "no"
+    environment:
+      - AWS_DEFAULT_REGION=us-east-1
+      - BUCKET_NAME=my-certificates
+      - BUCKET_PROFILE=certsync-role
+      - DNS_PROFILE=dns-role
+    secrets:
+      - source: credentials
+        target: credentials
+```
+
 Pull `dhsncats/certboto` from the Docker repository:
 
 ```console
-docker pull dhsncats/certboto
+docker-compose pull
 ```
 
 Or build `dhsncats/certboto` from source:
