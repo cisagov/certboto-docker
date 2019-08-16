@@ -22,19 +22,19 @@ You can find an example in this project's repository.
 To issue a new certificate:
 
 ```console
-docker-compose run cerboto certonly -d lemmy.imotorhead.com
+docker-compose run certboto certonly -d lemmy.imotorhead.com
 ```
 
 To renew existing certificates:
 
 ```console
-docker-compose run cerboto
+docker-compose run certboto
 ```
 
 For additional `certbot` commands see the help:
 
 ```console
-docker-compose run cerboto --help
+docker-compose run certboto --help
 ```
 
 ### Install ###
