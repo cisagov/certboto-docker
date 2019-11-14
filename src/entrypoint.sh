@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 set -o nounset
 set -o errexit
+# shellcheck disable=SC2039
 set -o pipefail
 
 if [ "$1" = "--version" ]; then
