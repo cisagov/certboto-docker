@@ -15,7 +15,7 @@ LABEL vendor="Cyber and Infrastructure Security Agency"
 LABEL version=${VERSION}
 
 RUN apk add python3
-RUN pip3 install --upgrade pip && pip3 install awscli docopt
+RUN pip3 install --upgrade pip && pip3 install --upgrade awscli docopt boto3
 COPY src/rebuild-symlinks.py src/entrypoint.sh src/version.txt /opt/certbot/
 COPY src/config /root/.aws/config
 RUN ln -snf /run/secrets/credentials /root/.aws/credentials
