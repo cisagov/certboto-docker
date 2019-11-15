@@ -1,13 +1,13 @@
 # certboto-docker 📜🤖☁️🐳 #
 
-[![Build Status](https://travis-ci.com/cisagov/certboto-docker.svg?branch=develop)](https://travis-ci.com/cisagov/certboto-docker)
+[![GitHub Build Status](https://github.com/cisagov/certboto-docker/workflows/build/badge.svg)](https://github.com/cisagov/certboto-docker/actions)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/certboto-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certboto-docker/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/certboto-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certboto-docker/context:python)
 
 ## Docker Image ##
 
-![MicroBadger Layers](https://img.shields.io/microbadger/layers/dhsncats/certboto.svg)
-![MicroBadger Size](https://img.shields.io/microbadger/image-size/dhsncats/certboto.svg)
+![MicroBadger Layers](https://img.shields.io/microbadger/layers/cisagov/certboto.svg)
+![MicroBadger Size](https://img.shields.io/microbadger/image-size/cisagov/certboto.svg)
 
 Certboto combines all the convenience of [Certbot](https://certbot.eff.org)
 with the cloudiness of [AWS S3 buckets](https://aws.amazon.com/s3/)
@@ -51,7 +51,7 @@ secrets:
 
 services:
   certboto:
-    image: dhsncats/certboto
+    image: cisagov/certboto
     init: true
     restart: "no"
     environment:
@@ -64,13 +64,13 @@ services:
         target: credentials
 ```
 
-Pull `dhsncats/certboto` from [Docker hub](https://hub.docker.com):
+Pull `cisagov/certboto` from [Docker hub](https://hub.docker.com):
 
 ```console
 docker-compose pull
 ```
 
-Or build `dhsncats/certboto` from source:
+Or build `cisagov/certboto` from source:
 
 ```console
 git clone https://github.com/cisagov/certboto-docker.git

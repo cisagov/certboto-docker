@@ -1,5 +1,5 @@
 #!/usr/bin/env pytest -vs
-"""Tests for example container."""
+"""Tests for certboto container."""
 
 import os
 import time
@@ -10,7 +10,7 @@ ENV_VAR = "ECHO_MESSAGE"
 ENV_VAR_VAL = "Hello World from docker-compose!"
 READY_MESSAGE = "Syncing certbot configs"
 TOKEN_ERROR_MESSAGE = "The security token included in the request is invalid"  # nosec
-TRAVIS_TAG = os.getenv("TRAVIS_TAG")
+RELEASE_TAG = os.getenv("RELEASE_TAG")
 VERSION_FILE = "src/version.txt"
 
 
@@ -54,7 +54,7 @@ def test_output(main_container):
 
 
 @pytest.mark.skipif(
-    TRAVIS_TAG in [None, ""], reason="this is not a release (TRAVIS_TAG not set)"
+    RELEASE_TAG in [None, ""], reason="this is not a release (RELEASE_TAG not set)"
 )
 def test_release_version():
     """Verify that release tag version agrees with the module version."""
@@ -63,8 +63,8 @@ def test_release_version():
         exec(f.read(), pkg_vars)  # nosec
     project_version = pkg_vars["__version__"]
     assert (
-        TRAVIS_TAG == f"v{project_version}"
-    ), "TRAVIS_TAG does not match the project version"
+        RELEASE_TAG == f"v{project_version}"
+    ), "RELEASE_TAG does not match the project version"
 
 
 def test_log_version(version_container):
