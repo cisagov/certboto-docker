@@ -170,6 +170,15 @@ assumed:
 }
 ```
 
+### Accessing and Installing Certificates at Instance Boot Time ###
+
+The certificates created by Certboto can be installed on a booting instance
+using [cloud-init](https://cloudinit.readthedocs.io/en/latest/).  An implementation
+of this can be found in the
+[openvpn-server-tf-module](https://github.com/cisagov/openvpn-server-tf-module)
+project.  Specifically
+[`install-certificates.py`](https://github.com/cisagov/openvpn-server-tf-module/blob/develop/cloudinit/install-certificates.py)
+
 ## Contributing ##
 
 We welcome contributions!  Please see [here](CONTRIBUTING.md) for
