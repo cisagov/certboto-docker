@@ -13,11 +13,13 @@ Options:
                          "warning", "error", and "critical". [default: warning]
 """
 
+# Standard Python Libraries
 import hashlib
 import logging
 import os
 import sys
 
+# Third-Party Libraries
 import docopt
 
 LIVE_DIR = "live"
