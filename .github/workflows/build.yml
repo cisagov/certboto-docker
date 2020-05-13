@@ -20,13 +20,10 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: 3.8
-<<<<<<< HEAD
-=======
       - name: Store installed Python version
         run: |
           echo "::set-env name=PY_VERSION::"\
           "$(python -c "import platform;print(platform.python_version())")"
->>>>>>> 4de6b59dd041229073cb15571ec5a1c005f6cad6
       - name: Cache pip test requirements
         uses: actions/cache@v1
         with:
