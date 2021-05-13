@@ -38,6 +38,13 @@ For additional `certbot` commands see the help:
 docker-compose run certboto --help
 ```
 
+To disable usage of the Route53 DNS plugin pass `--no-dns-route53` as the first
+argument.  This is useful if you need to use other types of challenges.
+
+```console
+docker-compose run certboto --no-dns-route53 --manual certonly -d lemmy.imotorhead.com
+```
+
 ### Install ###
 
 Create a `docker-compose.yml` file similar to this:
