@@ -4,7 +4,7 @@ set -o nounset
 set -o errexit
 # Sha-bang cannot be /bin/bash (not available), but
 # the container's /bin/sh does support pipefail.
-# shellcheck disable=SC2039
+# shellcheck disable=SC2039,SC3040
 set -o pipefail
 
 if [ "$1" = "--version" ]; then
