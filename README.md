@@ -83,7 +83,7 @@ Or build `cisagov/certboto` from source:
 ```console
 git clone https://github.com/cisagov/certboto-docker.git
 cd certboto-docker
-docker-compose build --build-arg VERSION=0.0.1
+docker-compose build --build-arg VERSION=0.0.3
 ```
 
 ## Environment Variables ##
