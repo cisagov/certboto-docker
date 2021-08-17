@@ -156,10 +156,9 @@ want set:
 
 ## Image tags ##
 
-The images of this container are tagged with [semantic
-versions](https://semver.org) of the underlying example project that they
-containerize.  It is recommended that most users use a version tag (e.g.
-`:0.0.3`).
+The images of this container are tagged with
+[semantic versions](https://semver.org).  It is recommended that most users use
+a version tag (e.g. `:0.0.3`).
 
 | Image:tag | Description |
 |-----------|-------------|
