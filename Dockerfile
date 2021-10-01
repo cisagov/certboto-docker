@@ -11,7 +11,11 @@ LABEL org.opencontainers.image.authors="mark.feldhousen@cisa.dhs.gov"
 LABEL org.opencontainers.image.vendor="Cybersecurity and Infrastructure Security Agency"
 
 RUN apk add --no-cache python3=3.8.10-r0
-RUN pip3 install --no-cache-dir pip==21.2.4 && pip3 install --upgrade awscli boto3 docopt
+RUN pip3 install --no-cache-dir \
+  pip==21.2.4 \
+  setuptools==58.1.0 \
+  wheel==0.37.0 \
+  && pip3 install --upgrade awscli boto3 docopt
 COPY src/rebuild-symlinks.py src/entrypoint.sh src/version.txt /opt/certbot/
 COPY src/config /root/.aws/config
 RUN ln -snf /run/secrets/credentials /root/.aws/credentials
