@@ -10,7 +10,7 @@ ARG VERSION
 LABEL org.opencontainers.image.authors="mark.feldhousen@cisa.dhs.gov"
 LABEL org.opencontainers.image.vendor="Cybersecurity and Infrastructure Security Agency"
 
-RUN apk add python3
+RUN apk add --no-cache python3=3.8.10-r0
 RUN pip3 install --upgrade pip && pip3 install --upgrade awscli boto3 docopt
 COPY src/rebuild-symlinks.py src/entrypoint.sh src/version.txt /opt/certbot/
 COPY src/config /root/.aws/config
