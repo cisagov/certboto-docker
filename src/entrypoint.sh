@@ -59,8 +59,9 @@ if [ $drop_to_shell = true ]; then
   echo
 else
   echo "Running: certbot $certbot_args"
-  # shellcheck disable=SC2048,SC2086
-  AWS_PROFILE=${DNS_PROFILE} certbot $certbot_args
+  # SC2086 - Allow word splitting and globbing with args sent to cerbot.
+  # shellcheck disable=SC2086
+  AWS_PROFILE=${DNS_PROFILE} certbot ${certbot_args}
 fi
 
 echo "Syncing certbot configs to ${BUCKET_NAME}"
