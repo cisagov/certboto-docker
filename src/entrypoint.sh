@@ -1,15 +1,8 @@
-#!/bin/sh
+#!/bin/busybox sh
+# shellcheck shell=dash
 
 set -o nounset
 set -o errexit
-# Sha-bang cannot be /bin/bash (not available), but
-# the container's /bin/sh does support pipefail.
-# SC2039 has been retired in favor of SC3xxx issues.
-# See: https://github.com/koalaman/shellcheck/wiki/SC2039
-# See: https://github.com/koalaman/shellcheck/issues/2052
-# Both the old and new codes are listed since CI is using the old code (0.7.0),
-# and dev environments are using the newer version (0.7.2).
-# shellcheck disable=SC2039,SC3040
 set -o pipefail
 
 certbot_args=""
