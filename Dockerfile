@@ -12,12 +12,12 @@ LABEL org.opencontainers.image.vendor="Cybersecurity and Infrastructure Security
 
 RUN apk add --no-cache python3=3.8.10-r0
 RUN pip3 install --no-cache-dir \
-  pip==21.2.4 \
-  setuptools==58.1.0 \
+  pip==21.3 \
+  setuptools==58.2.0 \
   wheel==0.37.0
 RUN pip3 install --no-cache-dir \
-  awscli==1.20.52 \
-  boto3==1.18.52 \
+  awscli==1.21.1 \
+  boto3==1.19.1 \
   docopt==0.6.2
 COPY src/rebuild-symlinks.py src/entrypoint.sh src/version.txt /opt/certbot/
 COPY src/config /root/.aws/config
