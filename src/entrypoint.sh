@@ -12,11 +12,6 @@ drop_to_shell=false
 # Parse command line arguments
 while [ $# -gt 0 ]; do
   case "$1" in
-    --version)
-      awk '{print $3}' < version.txt | tr -d \"
-      certbot --version
-      exit 0
-      ;;
     -h | --help) # Allow users to get help without bucket syncing
       certbot --help
       exit $?
@@ -29,6 +24,11 @@ while [ $# -gt 0 ]; do
     --shell)
       drop_to_shell=true
       shift
+      ;;
+    --version)
+      awk '{print $3}' < version.txt | tr -d \"
+      certbot --version
+      exit 0
       ;;
     *) # add to certbot_args
       certbot_args="$certbot_args $1"
