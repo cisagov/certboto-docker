@@ -1,6 +1,13 @@
 #!/bin/busybox sh
 # shellcheck shell=dash
 
+# This script runs in an Alpine Linux-based container. Alpine Linux uses busybox
+# to provide its shell. Busybox is a minimalistic replacement for GNU utilities.
+# The busybox shell is a derivative of the Debian 'dash' shell (by Herbert Xu),
+# which was created by porting the 'ash' shell (written by Kenneth Almquist)
+# from NetBSD. The directive above informs shellcheck to parse this file as a
+# dash script. See: https://github.com/koalaman/shellcheck/wiki/Directive#shell
+
 set -o nounset
 set -o errexit
 set -o pipefail
