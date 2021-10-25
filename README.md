@@ -62,11 +62,23 @@ docker-compose run certboto
 
 #### Additional `certbot` commands ####
 
+The `certbot` help can be displayed without synchronizing with a bucket.
+
 ```console
 docker-compose run certboto --help
 ```
 
-#### Notes ####
+More complicated `certbot` commands may be impossible to escape correctly. The
+`--shell` flag can be used to drop into a shell within the container after the
+bucket is synchronized to the container.  This allows users to issue commands
+directly to `certbot`.  Once the shell exits cleanly, the container will be
+synchronized back to the bucket.
+
+```console
+docker-compose run certboto --shell
+```
+
+#### Disabling Route53 challenges ####
 
 To disable usage of the Route53 DNS plugin pass `--no-dns-route53` as the first
 argument.  This is useful if you need to use other types of challenges.
