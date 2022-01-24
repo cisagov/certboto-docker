@@ -175,7 +175,7 @@ a version tag (e.g. `:0.1.0`).
 | Image:tag | Description |
 |-----------|-------------|
 |`cisagov/certboto:0.1.0`| An exact release version. |
-|`cisagov/certboto:0.0`| The most recent release matching the major and minor version numbers. |
+|`cisagov/certboto:0.1`| The most recent release matching the major and minor version numbers. |
 |`cisagov/certboto:0`| The most recent release matching the major version number. |
 |`cisagov/certboto:edge` | The most recent image built from a merge into the `develop` branch of this repository. |
 |`cisagov/certboto:nightly` | A nightly build of the `develop` branch of this repository. |
