@@ -62,11 +62,23 @@ docker-compose run certboto
 
 #### Additional `certbot` commands ####
 
+The `certbot` help can be displayed without synchronizing with a bucket.
+
 ```console
 docker-compose run certboto --help
 ```
 
-#### Notes ####
+More complicated `certbot` commands may be impossible to escape correctly. The
+`--shell` flag can be used to drop into a shell within the container after the
+bucket is synchronized to the container.  This allows users to issue commands
+directly to `certbot`.  Once the shell exits cleanly, the container will be
+synchronized back to the bucket.
+
+```console
+docker-compose run certboto --shell
+```
+
+#### Disabling Route53 challenges ####
 
 To disable usage of the Route53 DNS plugin pass `--no-dns-route53` as the first
 argument.  This is useful if you need to use other types of challenges.
@@ -158,12 +170,12 @@ want set:
 
 The images of this container are tagged with
 [semantic versions](https://semver.org).  It is recommended that most users use
-a version tag (e.g. `:0.0.4`).
+a version tag (e.g. `:0.1.0`).
 
 | Image:tag | Description |
 |-----------|-------------|
-|`cisagov/certboto:0.0.4`| An exact release version. |
-|`cisagov/certboto:0.0`| The most recent release matching the major and minor version numbers. |
+|`cisagov/certboto:0.1.0`| An exact release version. |
+|`cisagov/certboto:0.1`| The most recent release matching the major and minor version numbers. |
 |`cisagov/certboto:0`| The most recent release matching the major version number. |
 |`cisagov/certboto:edge` | The most recent image built from a merge into the `develop` branch of this repository. |
 |`cisagov/certboto:nightly` | A nightly build of the `develop` branch of this repository. |
@@ -225,8 +237,8 @@ Build the image locally using this git repository as the [build context](https:/
 
 ```console
 docker build \
-  --build-arg VERSION=0.0.4 \
-  --tag cisagov/certboto:0.0.4 \
+  --build-arg VERSION=0.1.0 \
+  --tag cisagov/certboto:0.1.0 \
   https://github.com/cisagov/certboto-docker.git#develop
 ```
 
@@ -256,9 +268,9 @@ Docker:
     docker buildx build \
       --file Dockerfile-x \
       --platform linux/amd64 \
-      --build-arg VERSION=0.0.4 \
+      --build-arg VERSION=0.1.0 \
       --output type=docker \
-      --tag cisagov/certboto:0.0.4 .
+      --tag cisagov/certboto:0.1.0 .
     ```
 
 ## AWS policies ##

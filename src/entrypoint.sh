@@ -1,28 +1,48 @@
-#!/bin/sh
+#!/bin/busybox sh
+# shellcheck shell=dash
+
+# This script runs in an Alpine Linux-based container. Alpine Linux uses busybox
+# to provide its shell. Busybox is a minimalistic replacement for GNU utilities.
+# The busybox shell is a derivative of the Debian 'dash' shell (by Herbert Xu),
+# which was created by porting the 'ash' shell (written by Kenneth Almquist)
+# from NetBSD. The directive above informs shellcheck to parse this file as a
+# dash script. See: https://github.com/koalaman/shellcheck/wiki/Directive#shell
 
 set -o nounset
 set -o errexit
-# Sha-bang cannot be /bin/bash (not available), but
-# the container's /bin/sh does support pipefail.
-# SC2039 has been retired in favor of SC3xxx issues.
-# See: https://github.com/koalaman/shellcheck/wiki/SC2039
-# See: https://github.com/koalaman/shellcheck/issues/2052
-# Both the old and new codes are listed since CI is using the old code (0.7.0),
-# and dev environments are using the newer version (0.7.2).
-# shellcheck disable=SC2039,SC3040
 set -o pipefail
 
-if [ "$1" = "--version" ]; then
-  awk '{print $3}' < version.txt | tr -d \"
-  certbot --version
-  exit 0
-fi
+certbot_args=""
+use_route53=true
+drop_to_shell=false
 
-# Allow users to get help without bucket syncing
-if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
-  certbot --help
-  exit $?
-fi
+# Parse command line arguments
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -h | --help) # Allow users to get help without bucket syncing
+      certbot --help
+      exit $?
+      ;;
+    --no-dns-route53)
+      echo "Route53 DNS challenge disabled by --no-dns-route53 flag"
+      use_route53=false
+      shift
+      ;;
+    --shell)
+      drop_to_shell=true
+      shift
+      ;;
+    --version)
+      awk '{print $3}' < version.txt | tr -d \"
+      certbot --version
+      exit 0
+      ;;
+    *) # add to certbot_args
+      certbot_args="$certbot_args $1"
+      shift
+      ;;
+  esac
+done
 
 ACME_CONFIG_ROOT=/etc/letsencrypt
 
@@ -33,18 +53,23 @@ AWS_PROFILE=${BUCKET_PROFILE} aws s3 sync --no-progress "s3://${BUCKET_NAME}" \
 echo "Rebuilding symlinks in ${ACME_CONFIG_ROOT}"
 ./rebuild-symlinks.py --log-level warning ${ACME_CONFIG_ROOT}
 
-# First argument flag --no-dns-route53 disables default use of --dns-route53
-if [ "$1" = "--no-dns-route53" ]; then
-  shift
-  echo "Route53 DNS challenge disabled by --no-dns-route53 flag"
-else
+if [ $use_route53 = true ]; then
   # Add the --dns-route53 argument to the start of our args
-  set -- --dns-route53 "$*"
+  certbot_args="--dns-route53 $certbot_args"
 fi
 
-echo "Running: certbot $*"
-# shellcheck disable=SC2048,SC2086
-AWS_PROFILE=${DNS_PROFILE} certbot $*
+if [ $drop_to_shell = true ]; then
+  echo "Starting a shell as requested by argument --shell"
+  echo "Certbot configs will be synchronized upon shell exit."
+  echo "Would have run command: AWS_PROFILE=${DNS_PROFILE} certbot ${certbot_args}"
+  /bin/sh
+  echo
+else
+  echo "Running: certbot $certbot_args"
+  # SC2086 - Allow word splitting and globbing with args sent to cerbot.
+  # shellcheck disable=SC2086
+  AWS_PROFILE=${DNS_PROFILE} certbot ${certbot_args}
+fi
 
 echo "Syncing certbot configs to ${BUCKET_NAME}"
 AWS_PROFILE=${BUCKET_PROFILE} aws s3 sync --delete ${ACME_CONFIG_ROOT} "s3://${BUCKET_NAME}"
