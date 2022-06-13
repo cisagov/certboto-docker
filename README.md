@@ -51,13 +51,13 @@ Consider using a `docker-compose.yml` file to run Certboto.
 #### Issue a new certificate ####
 
 ```console
-docker-compose run certboto certonly -d lemmy.imotorhead.com
+docker compose run certboto certonly -d lemmy.imotorhead.com
 ```
 
 #### Renew an existing certificate ####
 
 ```console
-docker-compose run certboto
+docker compose run certboto
 ```
 
 #### Additional `certbot` commands ####
@@ -65,7 +65,7 @@ docker-compose run certboto
 The `certbot` help can be displayed without synchronizing with a bucket.
 
 ```console
-docker-compose run certboto --help
+docker compose run certboto --help
 ```
 
 More complicated `certbot` commands may be impossible to escape correctly. The
@@ -75,7 +75,7 @@ directly to `certbot`.  Once the shell exits cleanly, the container will be
 synchronized back to the bucket.
 
 ```console
-docker-compose run certboto --shell
+docker compose run certboto --shell
 ```
 
 #### Disabling Route53 challenges ####
@@ -84,7 +84,7 @@ To disable usage of the Route53 DNS plugin pass `--no-dns-route53` as the first
 argument.  This is useful if you need to use other types of challenges.
 
 ```console
-docker-compose run certboto --no-dns-route53 --manual certonly -d lemmy.imotorhead.com
+docker compose run certboto --no-dns-route53 --manual certonly -d lemmy.imotorhead.com
 ```
 
 ## Using secrets with your container ##
@@ -156,14 +156,14 @@ want set:
 1. Pull the new image from Docker Hub:
 
     ```console
-    docker-compose pull
+    docker compose pull
     ```
 
 1. Recreate the running container by following the
 [previous instructions](#running-with-docker-compose):
 
     ```console
-    docker-compose run certboto
+    docker compose run certboto
     ```
 
 ## Image tags ##

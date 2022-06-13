@@ -9,7 +9,7 @@ import time
 import pytest
 
 ENV_VAR = "ECHO_MESSAGE"
-ENV_VAR_VAL = "Hello World from docker-compose!"
+ENV_VAR_VAL = "Hello World from docker compose!"
 READY_MESSAGE = "Syncing certbot configs"
 TOKEN_ERROR_MESSAGE = "The security token included in the request is invalid"  # nosec
 RELEASE_TAG = os.getenv("RELEASE_TAG")
