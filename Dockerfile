@@ -10,7 +10,7 @@ ARG VERSION
 LABEL org.opencontainers.image.authors="mark.feldhousen@cisa.dhs.gov"
 LABEL org.opencontainers.image.vendor="Cybersecurity and Infrastructure Security Agency"
 
-RUN apk add --no-cache python3=3.8.10-r0
+RUN apk add --no-cache python3=3.10.8-r0
 RUN pip3 install --no-cache-dir \
   pip==21.3.1 \
   setuptools==60.5.0 \
