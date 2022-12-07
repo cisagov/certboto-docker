@@ -45,7 +45,10 @@ RUN apk --no-cache --quiet add ${DEPS}
 # cache.  This results in a smaller final image, at the cost of
 # slightly longer install times.
 ###
-RUN pip3 install --no-cache-dir --upgrade pip setuptools wheel
+RUN pip3 install --no-cache-dir --upgrade \
+    pip==21.3.1 \
+    setuptools==60.5.0 \
+    wheel==0.37.1
 
 ###
 # Install Python dependencies
