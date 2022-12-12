@@ -1,6 +1,6 @@
 ARG VERSION=unspecified
 
-FROM certbot/dns-route53:v1.32.0
+FROM certbot/dns-route53:v2.1.0
 
 ARG VERSION
 
