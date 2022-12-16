@@ -1,8 +1,4 @@
-ARG VERSION=unspecified
-
 FROM certbot/dns-route53:v1.32.0
-
-ARG VERSION
 
 ###
 # For a list of pre-defined annotation keys and value types see:
