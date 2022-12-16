@@ -70,7 +70,7 @@ COPY src/config /root/.aws/config
 RUN ln -snf /run/secrets/credentials /root/.aws/credentials
 
 ###
-# Prepare to Run
+# Prepare to run
 ###
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["renew"]
