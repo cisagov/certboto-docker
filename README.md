@@ -3,8 +3,6 @@
 [![GitHub Build Status](https://github.com/cisagov/certboto-docker/workflows/build/badge.svg)](https://github.com/cisagov/certboto-docker/actions/workflows/build.yml)
 [![CodeQL](https://github.com/cisagov/certboto-docker/workflows/CodeQL/badge.svg)](https://github.com/cisagov/certboto-docker/actions/workflows/codeql-analysis.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/cisagov/certboto-docker/badge.svg)](https://snyk.io/test/github/cisagov/certboto-docker)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/certboto-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certboto-docker/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/certboto-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certboto-docker/context:python)
 
 ## Docker Image ##
 
