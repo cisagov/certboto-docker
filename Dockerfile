@@ -31,7 +31,7 @@ RUN apk --update --no-cache --quiet upgrade
 # longer install times.
 ###
 ENV DEPS \
-    python3=3.10.8-r0
+    python3=3.10.9-r0
 RUN apk --no-cache --quiet add ${DEPS}
 
 ###
