@@ -3,8 +3,6 @@
 [![GitHub Build Status](https://github.com/cisagov/certboto-docker/workflows/build/badge.svg)](https://github.com/cisagov/certboto-docker/actions/workflows/build.yml)
 [![CodeQL](https://github.com/cisagov/certboto-docker/workflows/CodeQL/badge.svg)](https://github.com/cisagov/certboto-docker/actions/workflows/codeql-analysis.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/cisagov/certboto-docker/badge.svg)](https://snyk.io/test/github/cisagov/certboto-docker)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/certboto-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certboto-docker/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/certboto-docker.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/certboto-docker/context:python)
 
 ## Docker Image ##
 
@@ -170,11 +168,11 @@ want set:
 
 The images of this container are tagged with
 [semantic versions](https://semver.org).  It is recommended that most users use
-a version tag (e.g. `:0.1.1`).
+a version tag (e.g. `:0.1.2`).
 
 | Image:tag | Description |
 |-----------|-------------|
-|`cisagov/certboto:0.1.1`| An exact release version. |
+|`cisagov/certboto:0.1.2`| An exact release version. |
 |`cisagov/certboto:0.1`| The most recent release matching the major and minor version numbers. |
 |`cisagov/certboto:0`| The most recent release matching the major version number. |
 |`cisagov/certboto:edge` | The most recent image built from a merge into the `develop` branch of this repository. |
@@ -237,8 +235,8 @@ Build the image locally using this git repository as the [build context](https:/
 
 ```console
 docker build \
-  --build-arg VERSION=0.1.1 \
-  --tag cisagov/certboto:0.1.1 \
+  --build-arg VERSION=0.1.2 \
+  --tag cisagov/certboto:0.1.2 \
   https://github.com/cisagov/certboto-docker.git#develop
 ```
 
@@ -268,9 +266,9 @@ Docker:
     docker buildx build \
       --file Dockerfile-x \
       --platform linux/amd64 \
-      --build-arg VERSION=0.1.1 \
+      --build-arg VERSION=0.1.2 \
       --output type=docker \
-      --tag cisagov/certboto:0.1.1 .
+      --tag cisagov/certboto:0.1.2 .
     ```
 
 ## AWS policies ##
