@@ -31,13 +31,13 @@ RUN apk --update --no-cache --quiet upgrade
 # longer install times.
 ###
 ENV DEPS \
-    python3=3.10.9-r0
+    python3=3.10.10-r0
 RUN apk --no-cache --quiet add ${DEPS}
 
 ###
 # Make sure pip, setuptools, and wheel are the latest versions
 #
-# Note that we use pip --no-cache-dir to avoid writing to a local
+# Note that we use pip3 --no-cache-dir to avoid writing to a local
 # cache.  This results in a smaller final image, at the cost of
 # slightly longer install times.
 ###
@@ -49,7 +49,7 @@ RUN pip3 install --no-cache-dir --upgrade \
 ###
 # Install Python dependencies
 #
-# Note that we use pip --no-cache-dir to avoid writing to a local
+# Note that we use pip3 --no-cache-dir to avoid writing to a local
 # cache.  This results in a smaller final image, at the cost of
 # slightly longer install times.
 ###
