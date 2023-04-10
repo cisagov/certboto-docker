@@ -1,4 +1,4 @@
-FROM certbot/dns-route53:v1.32.0
+FROM certbot/dns-route53:v2.5.0
 
 ###
 # For a list of pre-defined annotation keys and value types see:
