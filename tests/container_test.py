@@ -38,15 +38,9 @@ def test_wait_for_ready(main_container):
 
 def test_wait_for_exits(dockerc, main_container, version_container):
     """Wait for containers to exit."""
-<<<<<<< HEAD
     assert (
-        main_container.wait() == 1
+        dockerc.wait(main_container.id) == 1
     ), "Container service (main) did not exit with expected error"
-=======
->>>>>>> a9d6c92ea3ca2760e4a18276d06c668058dd3670
-    assert (
-        dockerc.wait(main_container.id) == 0
-    ), "Container service (main) did not exit cleanly"
     assert (
         dockerc.wait(version_container.id) == 0
     ), "Container service (version) did not exit cleanly"
@@ -54,16 +48,10 @@ def test_wait_for_exits(dockerc, main_container, version_container):
 
 def test_output(dockerc, main_container):
     """Verify the container had the correct output."""
-<<<<<<< HEAD
-    main_container.wait()  # make sure container exited if running test isolated
-    log_output = main_container.logs().decode("utf-8")
-    assert TOKEN_ERROR_MESSAGE in log_output, "Message not found in log output."
-=======
     # make sure container exited if running test isolated
     dockerc.wait(main_container.id)
     log_output = main_container.logs()
-    assert SECRET_QUOTE in log_output, "Secret not found in log output."
->>>>>>> a9d6c92ea3ca2760e4a18276d06c668058dd3670
+    assert TOKEN_ERROR_MESSAGE in log_output, "Message not found in log output."
 
 
 @pytest.mark.skipif(
