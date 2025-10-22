@@ -24,7 +24,7 @@ Consider using a `compose.yml` file to run Certboto.
 
     ```yaml
     ---
-    name: skeleton-docker
+    name: certboto-docker
 
     secrets:
       credentials:
@@ -125,7 +125,7 @@ want set:
 
     ```yaml
     ---
-    name: skeleton-docker
+    name: certboto-docker
 
     secrets:
       credentials:
