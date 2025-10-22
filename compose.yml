@@ -29,6 +29,7 @@ services:
 
   certboto-version:
     # Run the container to collect version information
+    command: --version
     image: cisagov/certboto
     init: true
     restart: "no"
