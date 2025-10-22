@@ -28,10 +28,9 @@ RUN apk --update --no-cache --quiet upgrade
 ###
 # Dependencies
 #
-# Note that we symlink the Python binary in the venv to the system-wide Python so that
-# any calls to `python3` will use our virtual environment. We are using short flags
-# because the ln binary in Alpine Linux does not support long flags. The -f instructs
-# ln to remove the existing file and the -s instructs ln to create a symbolic link.
+# Note that we use apk --no-cache to avoid writing to a local cache.
+# This results in a smaller final image, at the cost of slightly
+# longer install times.
 ###
 ENV DEPS \
     python3=3.10.14-r1
