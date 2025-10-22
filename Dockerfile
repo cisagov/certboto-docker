@@ -32,8 +32,7 @@ RUN apk --update --no-cache --quiet upgrade
 # This results in a smaller final image, at the cost of slightly
 # longer install times.
 ###
-ENV DEPS \
-    python3=3.10.14-r1
+ENV DEPS="python3=3.10.14-r1"
 RUN apk --no-cache --quiet add ${DEPS}
 
 ###
