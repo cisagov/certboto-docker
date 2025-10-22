@@ -1,4 +1,6 @@
-FROM certbot/dns-route53:v1.32.0
+# Official Docker images are in the form library/<app> while non-official
+# images are in the form <user>/<app>.
+FROM docker.io/certbot/dns-route53:v1.32.0
 
 ###
 # For a list of pre-defined annotation keys and value types see:
@@ -26,9 +28,10 @@ RUN apk --update --no-cache --quiet upgrade
 ###
 # Dependencies
 #
-# Note that we use apk --no-cache to avoid writing to a local cache.
-# This results in a smaller final image, at the cost of slightly
-# longer install times.
+# Note that we symlink the Python binary in the venv to the system-wide Python so that
+# any calls to `python3` will use our virtual environment. We are using short flags
+# because the ln binary in Alpine Linux does not support long flags. The -f instructs
+# ln to remove the existing file and the -s instructs ln to create a symbolic link.
 ###
 ENV DEPS \
     python3=3.10.14-r1

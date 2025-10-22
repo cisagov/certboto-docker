@@ -2,13 +2,12 @@
 
 [![GitHub Build Status](https://github.com/cisagov/certboto-docker/workflows/build/badge.svg)](https://github.com/cisagov/certboto-docker/actions/workflows/build.yml)
 [![CodeQL](https://github.com/cisagov/certboto-docker/workflows/CodeQL/badge.svg)](https://github.com/cisagov/certboto-docker/actions/workflows/codeql-analysis.yml)
-[![Known Vulnerabilities](https://snyk.io/test/github/cisagov/certboto-docker/badge.svg)](https://snyk.io/test/github/cisagov/certboto-docker)
 
 ## Docker Image ##
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/cisagov/certboto)](https://hub.docker.com/r/cisagov/certboto)
 [![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/cisagov/certboto)](https://hub.docker.com/r/cisagov/certboto)
-[![Platforms](https://img.shields.io/badge/platforms-amd64%20%7C%20arm%2Fv6%20%7C%20arm%2Fv7%20%7C%20arm64%20%7C%20ppc64le%20%7C%20s390x-blue)](https://hub.docker.com/r/cisagov/certboto/tags)
+[![Platforms](https://img.shields.io/badge/platforms-386%20%7C%20amd64%20%7C%20arm%2Fv6%20%7C%20arm%2Fv7%20%7C%20arm64%20%7C%20ppc64le%20%7C%20riscv64%20%7C%20s390x-blue)](https://hub.docker.com/r/cisagov/certboto/tags)
 
 Certboto combines all the convenience of [Certbot](https://certbot.eff.org)
 with the cloudiness of [AWS S3 buckets](https://aws.amazon.com/s3/)
@@ -17,15 +16,15 @@ all wrapped up in a tasty [Docker](https://www.docker.com) container.
 
 ## Running ##
 
-Consider using a `docker-compose.yml` file to run Certboto.
+Consider using a `compose.yml` file to run Certboto.
 
 ### Running with Docker Compose ###
 
-1. Create a `docker-compose.yml` file similar to the one below to use [Docker Compose](https://docs.docker.com/compose/).
+1. Create a `compose.yml` file similar to the one below to use [Docker Compose](https://docs.docker.com/compose/).
 
     ```yaml
     ---
-    version: "3.7"
+    name: skeleton-docker
 
     secrets:
       credentials:
@@ -122,11 +121,11 @@ want set:
     credential_source = Ec2InstanceMetadata
     ```
 
-1. Then add the secret to your `docker-compose.yml` file:
+1. Then add the secret to your `compose.yml` file:
 
     ```yaml
     ---
-    version: "3.7"
+    name: skeleton-docker
 
     secrets:
       credentials:
@@ -235,7 +234,6 @@ Build the image locally using this git repository as the [build context](https:/
 
 ```console
 docker build \
-  --build-arg VERSION=0.1.4 \
   --tag cisagov/certboto:0.1.4 \
   https://github.com/cisagov/certboto-docker.git#develop
 ```
@@ -266,7 +264,6 @@ Docker:
     docker buildx build \
       --file Dockerfile-x \
       --platform linux/amd64 \
-      --build-arg VERSION=0.1.4 \
       --output type=docker \
       --tag cisagov/certboto:0.1.4 .
     ```
@@ -374,3 +371,5 @@ dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 All contributions to this project will be released under the CC0
 dedication. By submitting a pull request, you are agreeing to comply
 with this waiver of copyright interest.
+
+[Pipenv]: https://pypi.org/project/pipenv/
