@@ -6,7 +6,6 @@ import time
 
 # Third-Party Libraries
 import pytest
-from semver import parse_version_info
 
 READY_MESSAGE = "Syncing certbot configs"
 TOKEN_ERROR_MESSAGE = "The security token included in the request is invalid"  # nosec
