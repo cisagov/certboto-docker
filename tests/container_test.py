@@ -10,7 +10,6 @@ import pytest
 READY_MESSAGE = "Syncing certbot configs"
 TOKEN_ERROR_MESSAGE = "The security token included in the request is invalid"  # nosec
 RELEASE_TAG = os.getenv("RELEASE_TAG")
-VERSION_FILE = "src/version.txt"
 
 
 def test_container_count(dockerc):
@@ -68,13 +67,9 @@ def test_log_version(dockerc, project_version, version_container):
     # make sure container exited if running test isolated
     dockerc.wait(version_container.id)
     log_output = version_container.logs().strip()
-    pkg_vars = {}
-    with open(VERSION_FILE) as f:
-        exec(f.read(), pkg_vars)  # nosec
-    project_version = pkg_vars["__version__"]
     assert log_output.startswith(
         project_version
-    ), f"Container version output to log does not match project version file {VERSION_FILE}"
+    ), "Container version output to log does not match project version"
 
 
 @pytest.mark.skipif(
