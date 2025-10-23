@@ -63,7 +63,7 @@ ENV VIRTUAL_ENV="${CERTBOT_HOME}/.venv"
 #
 # Note: Additional labels are added by the build workflow.
 ###
-LABEL org.opencontainers.image.authors="vm-fusion-dev-group@trio.dhs.gov"
+LABEL org.opencontainers.image.authors="vm-dev@gwe.cisa.dhs.gov"
 LABEL org.opencontainers.image.vendor="Cybersecurity and Infrastructure Security Agency"
 
 ###
