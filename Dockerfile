@@ -72,15 +72,6 @@ LABEL org.opencontainers.image.vendor="Cybersecurity and Infrastructure Security
 ###
 
 ###
-# Upgrade the system
-#
-# Note that we use apk --no-cache to avoid writing to a local cache.
-# This results in a smaller final image, at the cost of slightly
-# longer install times.
-###
-# RUN apk --update --no-cache --quiet upgrade
-
-###
 # Install Python 3
 #
 # Note that we use apk --no-cache to avoid writing to a local cache.
