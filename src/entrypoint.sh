@@ -33,7 +33,7 @@ while [ $# -gt 0 ]; do
       shift
       ;;
     --version)
-      awk '{print $3}' < version.txt | tr -d \"
+      cat version.txt
       certbot --version
       exit 0
       ;;
