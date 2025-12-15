@@ -1,6 +1,6 @@
 # Official Docker images are in the form library/<app> while non-official
 # images are in the form <user>/<app>.
-FROM docker.io/certbot/dns-route53:v1.32.0 AS compile-stage
+FROM docker.io/certbot/dns-route53:v5.2.2 AS compile-stage
 
 # Location of the Python virtual environment
 ENV CERTBOT_HOME="/opt/certbot"
@@ -51,7 +51,7 @@ RUN pipenv install --clear --deploy --extra-pip-args "--no-cache-dir" --verbose
 
 # Official Docker images are in the form library/<app> while non-official
 # images are in the form <user>/<app>.
-FROM docker.io/certbot/dns-route53:v1.32.0 AS build-stage
+FROM docker.io/certbot/dns-route53:v5.2.2 AS build-stage
 
 # Location of the Python virtual environment
 ENV CERTBOT_HOME="/opt/certbot"
