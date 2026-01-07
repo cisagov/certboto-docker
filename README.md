@@ -1,6 +1,7 @@
 # certboto-docker 📜🤖☁️🐳 #
 
 [![GitHub Build Status](https://github.com/cisagov/certboto-docker/workflows/build/badge.svg)](https://github.com/cisagov/certboto-docker/actions/workflows/build.yml)
+[![License](https://img.shields.io/github/license/cisagov/certboto-docker)](https://spdx.org/licenses/)
 [![CodeQL](https://github.com/cisagov/certboto-docker/workflows/CodeQL/badge.svg)](https://github.com/cisagov/certboto-docker/actions/workflows/codeql-analysis.yml)
 
 ## Docker Image ##
