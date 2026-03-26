@@ -164,6 +164,32 @@ want set:
     docker compose run certboto
     ```
 
+## Updating Python dependencies ##
+
+This image uses [Pipenv] to manage Python dependencies using a [Pipfile](https://github.com/pypa/pipfile).
+Both updating dependencies and changing the [Pipenv] configuration in `src/Pipfile`
+will result in a modified `src/Pipfile.lock` file that should be committed to the
+repository.
+
+### Updating dependencies ###
+
+If you want to update existing dependencies you would run the following command
+in the `src/` subdirectory:
+
+```console
+pipenv lock
+```
+
+### Modifying dependencies ###
+
+If you want to add or remove dependencies you would update the `src/Pipfile` file
+and then update dependencies as you would above.
+
+> [!NOTE]
+> You should only specify packages that are direct requirements of
+> your Docker configuration. Allow [Pipenv] to manage the dependencies
+> of the specified packages.
+
 ## Image tags ##
 
 The images of this container are tagged with
@@ -171,13 +197,13 @@ The images of this container are tagged with
 a version tag (e.g. `:0.1.6`).
 
 | Image:tag | Description |
-|-----------|-------------|
-|`cisagov/certboto:0.1.6`| An exact release version. |
-|`cisagov/certboto:0.1`| The most recent release matching the major and minor version numbers. |
-|`cisagov/certboto:0`| The most recent release matching the major version number. |
-|`cisagov/certboto:edge` | The most recent image built from a merge into the `develop` branch of this repository. |
-|`cisagov/certboto:nightly` | A nightly build of the `develop` branch of this repository. |
-|`cisagov/certboto:latest`| The most recent release image pushed to a container registry.  Pulling an image using the `:latest` tag [should be avoided.](https://vsupalov.com/docker-latest-tag/) |
+| --------- | ----------- |
+| `cisagov/certboto:0.1.6` | An exact release version. |
+| `cisagov/certboto:0.1` | The most recent release matching the major and minor version numbers. |
+| `cisagov/certboto:0` | The most recent release matching the major version number. |
+| `cisagov/certboto:edge` | The most recent image built from a merge into the `develop` branch of this repository. |
+| `cisagov/certboto:nightly` | A nightly build of the `develop` branch of this repository. |
+| `cisagov/certboto:latest` | The most recent release image pushed to a container registry.  Pulling an image using the `:latest` tag [should be avoided.](https://vsupalov.com/docker-latest-tag/) |
 
 See the [tags tab](https://hub.docker.com/r/cisagov/certboto/tags) on Docker
 Hub for a list of all the supported tags.
@@ -188,7 +214,7 @@ There are no volumes.
 
 <!--
 | Mount point | Purpose        |
-|-------------|----------------|
+| ----------- | -------------- |
 | `/path/to/volume` | Describe its purpose. |
 -->
 
@@ -197,8 +223,8 @@ There are no volumes.
 There are no exposed ports.
 
 <!--
-| Port | Purpose        |
-|------|----------------|
+| Port | Purpose |
+| ---- | ------- |
 | PORT_NUMBER | Describe its purpose. |
 -->
 
@@ -207,7 +233,7 @@ There are no exposed ports.
 ### Required ###
 
 | Name | Purpose |
-|------|---------|
+| ---- | ------- |
 | AWS_DEFAULT_REGION | Default AWS region. |
 | BUCKET_NAME | The bucket to store the Certbot configuration. |
 | BUCKET_PROFILE | The profile of your `credentials` to use for bucket access. |
@@ -219,14 +245,14 @@ There are no optional environment variables.
 
 <!--
 | Name  | Purpose | Default |
-|-------|---------|---------|
-| `OPTIONAL_VARIABLE` | Describe its purpose.  | `null` |
+| ---- | ------- | ------- |
+| `OPTIONAL_VARIABLE` | Describe its purpose. | `null` |
 -->
 
 ## Secrets ##
 
 | Filename | Purpose |
-|----------|---------|
+| -------- | ------- |
 | `credentials` | The [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) file. |
 
 ## Building from source ##
