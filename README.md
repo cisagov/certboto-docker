@@ -194,11 +194,11 @@ and then update dependencies as you would above.
 
 The images of this container are tagged with
 [semantic versions](https://semver.org).  It is recommended that most users use
-a version tag (e.g. `:0.1.6`).
+a version tag (e.g. `:0.1.7-rc.1`).
 
 | Image:tag | Description |
 | --------- | ----------- |
-| `cisagov/certboto:0.1.6` | An exact release version. |
+| `cisagov/certboto:0.1.7-rc.1` | An exact release version. |
 | `cisagov/certboto:0.1` | The most recent release matching the major and minor version numbers. |
 | `cisagov/certboto:0` | The most recent release matching the major version number. |
 | `cisagov/certboto:edge` | The most recent image built from a merge into the `develop` branch of this repository. |
@@ -261,7 +261,7 @@ Build the image locally using this git repository as the [build context](https:/
 
 ```console
 docker build \
-  --tag cisagov/certboto:0.1.6 \
+  --tag cisagov/certboto:0.1.7-rc.1 \
   https://github.com/cisagov/certboto-docker.git#develop
 ```
 
@@ -292,7 +292,7 @@ Docker:
       --file Dockerfile-x \
       --platform linux/amd64 \
       --output type=docker \
-      --tag cisagov/certboto:0.1.6 .
+      --tag cisagov/certboto:0.1.7-rc.1 .
     ```
 
 ## AWS policies ##
