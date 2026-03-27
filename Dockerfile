@@ -1,5 +1,10 @@
 # Official Docker images are in the form library/<app> while non-official
 # images are in the form <user>/<app>.
+#
+# certbot/dns-route53:v1.32.0 uses a base image of python:3.10-alpine,
+# and it was built when the latest patch release was Python 3.10.8.
+# As a result, Python 3.10.8 is preinstalled in /usr/local on this
+# image.
 FROM docker.io/certbot/dns-route53:v1.32.0 AS compile-stage
 
 # Location of the Python virtual environment
@@ -45,6 +50,11 @@ RUN pipenv install --clear --deploy --extra-pip-args "--no-cache-dir" --verbose
 
 # Official Docker images are in the form library/<app> while non-official
 # images are in the form <user>/<app>.
+#
+# certbot/dns-route53:v1.32.0 uses a base image of python:3.10-alpine,
+# and it was built when the latest patch release was Python 3.10.8.
+# As a result, Python 3.10.8 is preinstalled in /usr/local on this
+# image.
 FROM docker.io/certbot/dns-route53:v1.32.0 AS build-stage
 
 # Location of the Python virtual environment
