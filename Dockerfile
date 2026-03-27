@@ -11,9 +11,6 @@ ENV PYTHON_PIP_VERSION=26.0.1
 ENV PYTHON_PIPENV_VERSION=2026.0.3
 ENV PYTHON_SETUPTOOLS_VERSION=82.0.0
 
-# Install Python 3
-RUN apk --quiet add python3=3.10.14-r1
-
 ###
 # Install the specified versions of pip and setuptools into the system
 # Python environment; install the specified version of pipenv into the system Python
