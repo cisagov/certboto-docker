@@ -65,15 +65,6 @@ LABEL org.opencontainers.image.vendor="Cybersecurity and Infrastructure Security
 # touches certbot's internal files and therefore must run as root.
 ###
 
-###
-# Install Python 3
-#
-# Note that we use apk --no-cache to avoid writing to a local cache.
-# This results in a smaller final image, at the cost of slightly
-# longer install times.
-###
-RUN apk --no-cache --quiet add "python3=3.10.14-r1"
-
 # Copy in the Python virtual environment created in compile-stage, symlink the
 # Python binary in the venv to the system-wide Python, and add the venv to the PATH.
 #
