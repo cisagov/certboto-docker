@@ -39,7 +39,7 @@ def live_domains(config_root):
 
 def hash_archive(archive_domain_dir):
     """Create a map of hashes to directory entries."""
-    hash_map = dict()
+    hash_map = {}
     with os.scandir(archive_domain_dir) as it:
         for entry in it:
             with open(entry.path, "rb") as f:

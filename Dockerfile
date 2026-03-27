@@ -1,5 +1,10 @@
 # Official Docker images are in the form library/<app> while non-official
 # images are in the form <user>/<app>.
+#
+# certbot/dns-route53:v1.32.0 uses a base image of python:3.10-alpine,
+# and it was built when the latest patch release was Python 3.10.8.
+# As a result, Python 3.10.8 is preinstalled in /usr/local on this
+# image.
 FROM docker.io/certbot/dns-route53:v1.32.0 AS compile-stage
 
 # Location of the Python virtual environment
@@ -7,19 +12,15 @@ ENV CERTBOT_HOME="/opt/certbot"
 ENV VIRTUAL_ENV="${CERTBOT_HOME}/.venv"
 
 # Versions of the Python packages installed directly
-ENV PYTHON_PIP_VERSION=21.3.1
-ENV PYTHON_PIPENV_VERSION=2025.0.4
-ENV PYTHON_SETUPTOOLS_VERSION=60.5.0
-ENV PYTHON_WHEEL_VERSION=0.37.1
-
-# Install Python 3
-RUN apk --quiet add python3=3.10.14-r1
+ENV PYTHON_PIP_VERSION=26.0.1
+ENV PYTHON_PIPENV_VERSION=2026.0.3
+ENV PYTHON_SETUPTOOLS_VERSION=82.0.0
 
 ###
-# Install the specified versions of pip, setuptools, and wheel;
-# install the specified version of pipenv; create the image dependency
-# venv; and install the specified versions of pip, setuptools, and
-# wheel into the dependency venv.
+# Install the specified versions of pip and setuptools into the system
+# Python environment; install the specified version of pipenv into the system Python
+# environment; set up a Python virtual environment (venv); and install the specified
+# versions of pip and setuptools into the venv.
 #
 # Note that we use the --no-cache-dir flag to avoid writing to a local
 # cache.  This results in a smaller final image, at the cost of
@@ -28,7 +29,6 @@ RUN apk --quiet add python3=3.10.14-r1
 RUN python3 -m pip install --no-cache-dir --upgrade \
         pip==${PYTHON_PIP_VERSION} \
         setuptools==${PYTHON_SETUPTOOLS_VERSION} \
-        wheel==${PYTHON_WHEEL_VERSION} \
     && python3 -m pip install --no-cache-dir --upgrade \
         pipenv==${PYTHON_PIPENV_VERSION} \
     # Manually create the virtual environment
@@ -36,8 +36,7 @@ RUN python3 -m pip install --no-cache-dir --upgrade \
     # Ensure the core Python packages are installed in the virtual environment
     && ${VIRTUAL_ENV}/bin/python3 -m pip install --no-cache-dir --upgrade \
         pip==${PYTHON_PIP_VERSION} \
-        setuptools==${PYTHON_SETUPTOOLS_VERSION} \
-        wheel==${PYTHON_WHEEL_VERSION}
+        setuptools==${PYTHON_SETUPTOOLS_VERSION}
 
 ###
 # Install the Python dependencies into the virtual environment.
@@ -51,6 +50,11 @@ RUN pipenv install --clear --deploy --extra-pip-args "--no-cache-dir" --verbose
 
 # Official Docker images are in the form library/<app> while non-official
 # images are in the form <user>/<app>.
+#
+# certbot/dns-route53:v1.32.0 uses a base image of python:3.10-alpine,
+# and it was built when the latest patch release was Python 3.10.8.
+# As a result, Python 3.10.8 is preinstalled in /usr/local on this
+# image.
 FROM docker.io/certbot/dns-route53:v1.32.0 AS build-stage
 
 # Location of the Python virtual environment
@@ -70,15 +74,6 @@ LABEL org.opencontainers.image.vendor="Cybersecurity and Infrastructure Security
 # This Docker container does not use an unprivileged user because it
 # touches certbot's internal files and therefore must run as root.
 ###
-
-###
-# Install Python 3
-#
-# Note that we use apk --no-cache to avoid writing to a local cache.
-# This results in a smaller final image, at the cost of slightly
-# longer install times.
-###
-RUN apk --no-cache --quiet add "python3=3.10.14-r1"
 
 # Copy in the Python virtual environment created in compile-stage, symlink the
 # Python binary in the venv to the system-wide Python, and add the venv to the PATH.
